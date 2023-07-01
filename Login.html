@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+  
+    <form action="Dashboard.html" method="get" id="loginForm">
+      <h2>Login</h2>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" required>
+      <br><br>
+      <label for="password">Password:</label>
+      <input type="text" id="password" name="password" required>
+      <br><br>
+      <input type="submit" value="Login">
+      <button> <a href="Register.html">Register here</a> </button>
+    </form>
+
+
+    <!-- <div class="container">
+        <div class="row justify-content-center mt-5">
+           <div class="col-lg-6">
+                <form  method="post" id="myprofile" action="Dashboard.html" >
+                  <h3 class="text-center mb-4">LOGIN </h3>
+                    <div class=" mb-3">
+                      <label  class="form-label">
+                        VoterId</label>
+                        <input type="text" class="form-control" name="voterId" placeholder="Enter VoterId" id="voterId" required>
+                    </div> -->
+                    <!-- <div id="button">  -->
+                        <!-- <button type="submit" class="btn btn-primary"><a href="Dashboard.html?id=${voterId}">submit</a> </button> -->
+                    
+
+                    <!-- </div> -->
+                    <!-- <div class="mb-3">
+                      <label class="form-label" >
+                          LastName</label>
+                        <input type="text" class="form-control"  name="lastName" placeholder="Enter LastName" id="lastName" required >
+                      
+                    </div>
+                      <div class="mb-3">
+                        <label class="form-label">
+                          Email </label>
+                          <input type="text"  class="form-control" name="email" placeholder="Enter Email" id="email" required >
+                       
+                      </div>
+                      <div class=" mb-3">
+                        <label class="form-label" >
+                          Address</label>
+                          <input type="text" class="form-control" name="address" placeholder="Enter Address" id="address" required >
+                       
+                      </div>
+                      <div class=" mb-3">
+                        <label class="form-label" >  Password</label>
+                        <input type="password" class="form-control" id=" Password" placeholder="Enter Password">
+                      </div>
+                       --> 
+                       
+  
+                <!-- </form>
+          </div>
+        </div>
+    </div> -->
+
+
+
+
+
+
+
+
+
+
+    <!-- <script>
+fetch("http://localhost:8080/api/voter")
+ .then((data) => {
+   return data.json();
+ })
+ .then((Data) => {
+    let btndata="";
+   Data.forEach((store) => {
+        btndata=`
+        <tr>
+            <td>
+                <a href="EditCandidate.html?id=${store.voterId}" class="btn btn-success">Submit</a>
+            </td>
+        </tr>
+        
+        `;
+        document.getElementById('button').innerHTML=btndata;
+    });
+    });
+    
+  
+    </script> -->
+
+    <script>
+
+
+
+// LOGIN FUNCTIONALITY
+
+const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            
+            fetch('http://localhost:8080/api/voter/Voter')
+                .then(response => response.json())
+                .then(data => {
+                    const matchingUser = data.find(user => user.email == email && user.password == password);
+                    if (matchingUser) {
+                        alert('Successful login');
+                        window.location.href = 'Dashboard.html';
+                    } else {
+                        alert('Invalid voter ID or password');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred during login');
+                });
+        });
+
+
+
+        
+// const frm =document.getElementById('frm');
+// frm.addEventListener('submit', (event)=>{
+//   event.preventDefault();
+
+//   let voterid =document.getElementById('voterId');
+//   let pwd = document.getElementById('password');
+
+//   if(voterid === voterId && pwd === password) {
+//     fetch("http://localhost:8080/api/voter/Voter").then((data) => {
+//     //console.log(data);
+//     return data.json();
+
+//   });
+//       }else{
+//         alert("invalid voterid or password");
+//       }
+//});
+
+    </script>
+
+
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
